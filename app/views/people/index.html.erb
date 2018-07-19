@@ -1,16 +1,13 @@
-
-
-
-  <div>
+<div class="search">
     <%= search_form_for @q do |f| %>
       <%= f.label :first_name_or_last_name_cont %>
+    <div class="search_bar">
       <%= f.search_field :first_name_or_last_name_cont, placeholder: "Search" %>
+    </div>
       <%= f.submit "Search"%>
     <% end %>
   </div>
 
-
-<h1>Search Results</h1>
 <table>
   <tbody>
   <% if @search_results %>
@@ -26,26 +23,25 @@
   </tbody>
 </table>
 
-
 <div class="table_and_header">
   <h1>Contact Directory with Birthdays</h1>
   <table>
     <thead>
       <tr id="headers">
         <th>
-          <%= sortable("first_name")%>
+          <%= "Name" %>
         </th>
         <th>
-          <%= sortable("phone")%>
+          <%= "Phone" %>
         </th>
         <th>
-          <%= sortable("title")%>
+          <%= "Title" %>
         </th>
         <th>
-          <%= sortable("email")%>
+          <%= "Email" %>
         </th>
         <th>
-          <%= sortable("birthday")%>
+          <%= "Birthday" %>
         </th>
       </tr>
     </thead>
@@ -53,6 +49,7 @@
 
     <% if @people %>
       <%- @people.each do |l| %>
+      <tr>
         <td>
           <%= l.full_name %>
         </td>
