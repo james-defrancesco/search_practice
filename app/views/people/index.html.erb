@@ -1,0 +1,86 @@
+<%# <div class="logo">
+  <img src="/assets/TMPGimage.png">
+</div>
+<script>
+  window.onload = function () {
+    document.body.style.backgroundColor = '#00FFD4';
+  }
+</script> %>
+
+<% content_for :search do %>
+  <div>
+  <%= search_form_for @search, method: 'get' do |f| %>
+    <%= f.label :first_name_or_last_name_cont %>
+    <%= f.search_field :first_name_or_last_name_cont, placeholder: "Search" %>
+    <%= f.submit "Search"%>
+    <% end %>
+  </div>
+<% end %>
+
+<h1>Search Results</h1>
+<table>
+  <tbody>
+  <% if @search_results %>
+  <td>
+    <%= "Nothing to show" %> 
+  </td>
+    <% @search_results.each do |l| %>
+      <tr>
+      
+        <td><%= l.full_name %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div class="table_and_header">
+  <h1>Contact Directory with Birthdays</h1>
+  <table>
+    <thead>
+      <tr id="headers">
+        <th>
+          <%=sortable"first_name"%>
+        </th>
+        <th>
+          <%=sortable"phone"%>
+        </th>
+        <th>
+          <%=sortable"title"%>
+        </th>
+        <th>
+          <%=sortable"email"%>
+        </th>
+        <th>
+          <%=sortable("birthday")%>
+        </th>
+      </tr>
+    </thead>
+    </thead>
+
+    <%- @people.each do |l| %>
+
+              <td>
+                <%= l.full_name %>
+              </td>
+
+              <td>
+                <%= l.phone %>
+              </td>
+
+              <td>
+                <%= l.title %>
+              </td>
+              <td>
+                <%= l.email %>
+              </td>
+              <td>
+                <%- if l.birthday %>
+                  <%= l.birthday.strftime("%B %d") %>
+                    <% end %>
+              </td>
+              </tr>
+              <%- end %>
+          </table>
+        </div>
